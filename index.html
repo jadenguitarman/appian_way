@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Appian Way</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css?family=Londrina+Solid:300,400,900" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link href="css/jquery-ui.css" rel="stylesheet">
+		<link href="css/styles.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+		<script src="js/scripts.js"></script>
+		<audio id ="shotgun-fire" src="sounds/shot_arrow.mp3" preload="auto"></audio>
+		<audio id ="shotgun-dry" src="sounds/dry-fire.mp3" preload="auto"></audio>
+		<audio id ="openingSong" src="sounds/openingSong.mp3" preload="auto"></audio>
+	</head>
+	<body>
+		<div class="container">
+			<!-- Character setup screen -->
+			<div id="characterSetup">
+				<div id="start">
+					<div class="main-title">
+						<h1>The Appian Way</h1>
+					</div>
+					<div class="icon-animate">
+						<!-- <img src="img/beans.png" alt=""> -->
+					</div>
+					<div class="icon-wagon">
+						<!-- <img src="img/beans.png" alt=""> -->
+					</div>
+					<img src="img/start-cover.jpg" alt="valley">
+					<span id="startBTN" class="btn btn-success">Start</span>
+				</div>
+				<div id="characterInput">
+					<h1>The Appian Way</h1>
+					<div class="row">
+						<div id="profession" class="col-md-3">
+							<p>Select your group</p>
+							<div class="prettyColumn">
+								<div id="radio1">
+									<label><input type="radio" name="profession" value="1" checked> Contubernium</label>
+									<span class="tooltiptext">Three of their members were killed, leaving this contubernium with just five members, 1000 denarii, no initial food, and the mission of making it to Brundisium by themselves safely.</span>
+								</div>
+								<div id="radio2">
+									<label><input type="radio" name="profession" value="2"> Centuria</label>
+									<span class="tooltiptext">A centuria is a group of 100 soldiers. The five soldiers that you'll be controlling are given no initial food, 800 denarii to spend, and the mission of getting to Brundisium by themselves safely.</span>
+								</div>
+								<div id="radio3">
+									<label><input type="radio" name="profession" value="3"> Cohors</label>
+									<span class="tooltiptext">A cohors is a group of 480 soldiers. 500 units of food and 500 denarii are given to the five soldiers who are tasked with making it to Brundisium by themselves.</span>
+								</div>
+							</div>
+							<span id="characterBTN" class="btn btn-success">Next</span>
+						</div>
+						<div id="charNameInput" class="col-md-3">
+							<p>Type in the names of your soldiers:</p>
+							<div class="prettyColumn">
+								<input id="char1" type="text" placeholder="name player 1" value="Silius Marcus">
+								<input id="char2" type="text" placeholder="name player 2" value="Junius Aquilinus">
+								<input id="char3" type="text" placeholder="name player 3" value="Lucinius Cinna">
+								<input id="char4" type="text" placeholder="name player 4" value="Publius Brutus Sabinus">
+								<input id="char5" type="text" placeholder="name player 5" value="Drusus Aurelius">
+							</div>
+						</div>
+						<div class="col-md-6" style="text-align:center;">
+							<img src="img/horse.png" alt="valley">
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- inital store screen -->
+			<div id="store">
+				<div class="store-fields">
+					<div style="width:0;height: 50%;"></div>
+					<div class="store-titles">
+						<h2>At The Market</h2>
+						<h3><span class="wagon-money-remaining"></span> denarii</h3>
+					</div>
+					<div class="row" id="upper-store-fields">
+						<div class="col-md-3">
+							<p>Amount</p>
+						</div>
+						<div class="col-md-3">
+							<p>Item</p>
+						</div>
+						<div class="col-md-3">
+							<p>Cost</p>
+						</div>
+						<div class="col-md-3">
+							<p>Total</p>
+						</div>
+					</div>
+					<div class="row" id="food-fields">
+						<div class="col-md-3">
+							<input type="number" name="food" placeholder="0" value="500">
+						</div>
+						<div class="col-md-3">
+							<p>Units of Food</p>
+						</div>
+						<div class="col-md-3">
+							<p>0.2 denarii</p>
+						</div>
+						<div class="col-md-3">
+							<p class="food-total"></p>
+						</div>
+					</div>
+					<div class="row" id="bullet-fields">
+						<div class="col-md-3">
+							<input type="number" name="bullets" placeholder="0" value="10">
+						</div>
+						<div class="col-md-3">
+							<p>Arrows</p>
+						</div>
+						<div class="col-md-3">
+							<p>0.1 denarii</p>
+						</div>
+						<div class="col-md-3">
+							<p class="bullet-total"></p>
+						</div>
+					</div>
+					<span id="back-button" class="btn btn-danger">Back</span>
+					<span id="subtotal" class="btn btn-warning">Sub-Total</span>
+					<span id="storeBTN" class="btn btn-success">Buy</span>
+					<p class="store-total">0 denarii</p>
+				</div>
+			</div>
+			<!-- main gameplay screen -->
+			<div id="gameMainScreen">
+				<div class="row">
+					<div class="col-md-8">
+						<div id="faq">
+							<img src="img/faq.png" alt="Help button">
+							<p class="tooltiptext">The goal is to make it to Brundisium, which is 500 kilometers away from Rome down the Appian Way.<br>Click 'continue' to travel 10 kilometers per day.<br>Click 'rest' to heal your team members.<br>Click 'hunt' to gather more food.<br>All actions spend one day, and each team member eats 5 food units per day.</p>
+						</div>
+						<h1>The Appian Way</h1>
+						<div class="row" id="wagon-images" style="padding:0;">
+							<div class="col-md-2">
+								<img src="img/roman tent.png" class="ride" id="wagon-6" alt="wagon">
+							</div>
+							<div class="col-md-2">
+								<img src="img/roman tent.png" class="ride" id="wagon-5" alt="wagon">
+							</div>
+							<div class="col-md-2">
+								<img src="img/roman tent.png" class="ride" id="wagon-4" alt="wagon">
+							</div>
+							<div class="col-md-2">
+								<img src="img/roman tent.png" class="ride" id="wagon-3" alt="wagon">
+							</div>
+							<div class="col-md-2">
+								<img src="img/roman tent.png" class="ride" id="wagon-2" alt="wagon">
+							</div>
+							<div class="col-md-2">
+								<img src="img/roman tent.png" class="ride" id="wagon-1" alt="wagon">
+							</div>
+						</div>
+						<div id="ongoing-text-box">
+							<p class="tooltiptext">The goal is to make it to Brundisium, which is 500 kilometers away from Rome down the Appian Way.<br>Click 'continue' to travel 10 kilometers per day.<br>Click 'rest' to heal your team members.<br>Click 'hunt' to gather more food.<br>All actions spend one day, and each team member eats 5 food units per day.</p>
+						</div>
+						<p id="progress-title">Journey progress:</p>
+						<div id="progressbar"></div>
+					</div>
+					<div class="col-md-4" id="right-column">
+						<h2>Team Conditions</h2>
+						<div class="prettyColumn" id="status-panel">
+							<p class="bold" style="margin:0;">Days elapsed: <span class="current-date">0</span> days</p>
+							<p class="bold" style="margin:0;">Distance traveled: <span class="distance-traveled">0</span> kilometers</p>
+							<ul>
+								<li>
+									<span id="player-one-name"></span>: <span id="player-one-status"></span><span>, has <span id="player-one-illness"></span> illnesses.</span>
+									<div id="char1-health-bar" class="health-bar"></div>
+								</li>
+								<li>
+									<span id="player-two-name"></span>: <span id="player-two-status"></span><span>, has <span id="player-two-illness"></span> illnesses.</span>
+									<div id="char2-health-bar" class="health-bar"></div>
+								</li>
+								<li>
+									<span id="player-three-name"></span>: <span id="player-three-status"></span><span>, has <span id="player-three-illness"></span> illnesses.</span>
+									<div id="char3-health-bar" class="health-bar"></div>
+								</li>
+								<li>
+									<span id="player-four-name"></span>: <span id="player-four-status"></span><span>, has <span id="player-four-illness"></span> illnesses.</span>
+									<div id="char4-health-bar" class="health-bar"></div>
+								</li>
+								<li>
+									<span id="player-five-name"></span>: <span id="player-five-status"></span><span>, has <span id="player-five-illness"></span> illnesses.</span>
+									<div id="char5-health-bar" class="health-bar"></div>
+								</li>
+							</ul>
+							<div class="row" id="supplies">
+								<div class="col-md-4">
+									<img src="img/restaurant.png" alt="food">
+									<p class="bold"> Food left <br><span id="wagon-food-remaining"></span></p>
+								</div>
+								<div class="col-md-4">
+									<img src="img/arrows.png" alt="bullets">
+									<p class="bold"> Arrows left <br><span id="wagon-bullets-remaining"></span></p>
+								</div>
+								<div class="col-md-4">
+									<img src="img/denarius.png" alt="money">
+									<p class="bold"> Denarii left <br><span class="wagon-money-remaining"></span></p>
+								</div>
+							</div>
+						</div>
+						<span id="rest-button" class="rch btn btn-info">Rest</span>
+						<span id="continue-button" class="rch btn btn-success">Continue</span>
+						<span id="hunt-button" class="rch btn btn-danger">Hunt</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+			<div class="modal-child">
+			</div>
+		</div>
+		<div id="buttonModal" class="modal2">
+			<div class="modal-child">
+				<div class="button-content">
+				</div>
+				<div class="buttons">
+					<span id="option1-button" class="btn btn-success">Option 1</span> <span id="option2-button" class="btn btn-success">Option 2</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
